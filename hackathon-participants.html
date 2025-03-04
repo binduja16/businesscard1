@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Participants</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hackathon Participants</h1>
+        <ul id="participantsList"></ul>
+    </div>
+
+    <script>
+        // List of Hackathon participants with business card images
+        const participants = [
+            { name: "John Doe", designation: "Full Stack Developer", company: "Tech Corp", card: "b1.webp" },
+            { name: "Alice Smith", designation: "AI Engineer", company: "AI Innovations", card: "b2.avif" },
+            { name: "Mark Johnson", designation: "Cybersecurity Specialist", company: "SecureNet", card: "b3.avif" }
+        ];
+
+        const list = document.getElementById("participantsList");
+
+        // Dynamically create list items with download links
+        participants.forEach(participant => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <strong>${participant.name}</strong> - ${participant.designation} at ${participant.company}
+                <br>
+                <a href="${participant.card}" target="_blank">View Business Card</a>
+            `;
+            list.appendChild(li);
+        });
+    </script>
+</body>
+</html>

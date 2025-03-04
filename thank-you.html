@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Project Submitted Successfully!</h1>
+        <p>Thank you for submitting your project. Our team will review it and get back to you soon.</p>
+
+        <button onclick="window.location.href='index.html'">Go to Home</button>
+        <button onclick="viewProjectDetails()">View Submitted Project</button>
+    </div>
+
+    <script>
+        function viewProjectDetails() {
+            const projectData = JSON.parse(localStorage.getItem("submittedProject"));
+            if (projectData) {
+                alert(`📌 Project Title: ${projectData.title}\n📝 Description: ${projectData.description}\n📇 Business Card: ${projectData.businessCard}`);
+            } else {
+                alert("No project details found!");
+            }
+        }
+    </script>
+</body>
+</html>

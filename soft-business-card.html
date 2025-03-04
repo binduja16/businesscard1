@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Project Details</h1>
+        <form id="projectForm">
+            <input type="text" id="projectTitle" placeholder="Project Title" required>
+            <textarea id="projectDescription" placeholder="Project Description" required></textarea>
+
+            <div id="businessCardSection">
+                <h3>Attached Business Card:</h3>
+                <div id="softBusinessCard"></div>
+            </div>
+
+            <button type="submit">Submit Project</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const businessCardData = JSON.parse(localStorage.getItem("projectBusinessCard"));
+
+            if (businessCardData) {
+                const cardDiv = document.getElementById("softBusinessCard");
+                cardDiv.innerHTML = `
+                    <div class="business-card" style="background-color: ${businessCardData.cardColor}; font-family: ${businessCardData.fontStyle};">
+                        <h2>${businessCardData.name}</h2>
+                        <h3>${businessCardData.designation}</h3>
+                        <p>${businessCardData.company}</p>
+                        <p>📞 ${businessCardData.phone}</p>
+                        <p>✉ ${businessCardData.email}</p>
+                        <p>🌍 ${businessCardData.website || "N/A"}</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="eventName"></h1>
+        <p id="eventDescription"></p>
+        <p id="eventDate"></p>
+        <p id="eventLocation"></p>
+        <p id="eventAgenda"></p>
+
+        <div class="buttons">
+            <button onclick="openSignup()">Sign Up</button>
+            <button onclick="openLogin()">Login</button>
+        </div>
+        
+        <button onclick="goBack()">Go Back</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const subEventId = urlParams.get('subEvent');
+
+            const eventDetails = {
+                "ai-hack": { 
+                    name: "AI Hack", 
+                    description: "Join the AI Hackathon to develop cutting-edge AI solutions. Compete against top developers, solve real-world problems, and win prizes!", 
+                    date: "March 15, 2025", 
+                    location: "Tech Park, San Francisco", 
+                    agenda: "Introduction, Team Forming, AI Development, Pitching, Awards"
+                },
+                "blockchain-challenge": { 
+                    name: "Blockchain Challenge", 
+                    description: "A blockchain-focused hackathon where developers create innovative DApps and smart contracts. Get mentorship from industry leaders!", 
+                    date: "April 5, 2025", 
+                    location: "Online", 
+                    agenda: "Keynote Speech, Coding Sessions, Pitching, Prize Distribution"
+                },
+                "cybersecurity-ctf": { 
+                    name: "Cybersecurity CTF", 
+                    description: "A Capture The Flag (CTF) competition where cybersecurity enthusiasts solve challenges on cryptography, penetration testing, and forensics.", 
+                    date: "May 1, 2025", 
+                    location: "MIT, Boston", 
+                    agenda: "CTF Challenges, Live Demos, Cybersecurity Talks, Winner Announcements"
+                }
+            };
+
+            if (subEventId && eventDetails[subEventId]) {
+                document.getElementById("eventName").innerText = eventDetails[subEventId].name;
+                document.getElementById("eventDescription").innerText = eventDetails[subEventId].description;
+                document.getElementById("eventDate").innerText = "📅 Date: " + eventDetails[subEventId].date;
+                document.getElementById("eventLocation").innerText = "📍 Location: " + eventDetails[subEventId].location;
+                document.getElementById("eventAgenda").innerText = "📝 Agenda: " + eventDetails[subEventId].agenda;
+            } else {
+                document.getElementById("eventName").innerText = "Event Not Found";
+                document.getElementById("eventDescription").innerText = "No details available.";
+            }
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function openSignup() {
+            window.location.href = "signup.html";
+        }
+
+        function openLogin() {
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

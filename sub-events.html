@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub Events</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="subEventTitle">Sub Events</h1>
+        <ul id="subEventList"></ul>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('event');
+
+            const subEvents = {
+                "hackathon": [
+                    { name: "AI Hack", id: "ai-hack" },
+                    { name: "Blockchain Challenge", id: "blockchain-challenge" },
+                    { name: "Cybersecurity CTF", id: "cybersecurity-ctf" }
+                ],
+                "tech-summit": [
+                    { name: "Cloud Computing", id: "cloud-tech" },
+                    { name: "Web Development", id: "web-dev" }
+                ],
+                "ai-conference": [
+                    { name: "AI in Healthcare", id: "ai-health" },
+                    { name: "Deep Learning", id: "deep-learning" }
+                ]
+            };
+
+            if (subEvents[eventId]) {
+                document.getElementById("subEventTitle").innerText = eventId.replace("-", " ").toUpperCase();
+                subEvents[eventId].forEach(subEvent => {
+                    let li = document.createElement("li");
+                    li.innerHTML = `<a href="event-details.html?subEvent=${subEvent.id}">${subEvent.name}</a>`;
+                    document.getElementById("subEventList").appendChild(li);
+                });
+            } else {
+                document.getElementById("subEventTitle").innerText = "Events Not Found";
+            }
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

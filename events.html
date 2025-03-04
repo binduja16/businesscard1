@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Categories</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Select an Event Category</h1>
+        <ul id="eventList"></ul>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+
+            const events = {
+                developer: ["Hackathon", "Tech Summit", "AI Conference"],
+                business: ["Startup Expo", "Networking Meet", "Business Growth Forum"]
+            };
+
+            const eventList = document.getElementById("eventList");
+            events[category].forEach(event => {
+                let li = document.createElement("li");
+                let eventId = event.toLowerCase().replace(/\s+/g, "-"); 
+                li.innerHTML = `<a href="sub-events.html?event=${eventId}">${event}</a>`;
+                eventList.appendChild(li);
+            });
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
